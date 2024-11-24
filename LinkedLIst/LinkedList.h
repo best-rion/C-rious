@@ -2,7 +2,7 @@
     #include <stdlib.h>
 #endif
 
-#include "../CustomMemoryAllocator/Allocator.h"
+#include "../MemoryAllocator/Allocator.h"
 
 struct NodeStruct
 {
