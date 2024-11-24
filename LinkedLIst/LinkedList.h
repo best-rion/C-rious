@@ -4,6 +4,7 @@
 
 #include "../MemoryAllocator/Allocator.h"
 
+
 struct NodeStruct
 {
     char* value;
@@ -11,20 +12,27 @@ struct NodeStruct
 };
 typedef struct NodeStruct Node;
 
-Node head_node = {0, NULL};
 
-
-
-void addToList(char string[])
+struct ListStruct
 {
-    Node* current_node_ptr = &head_node;
+    Node head_node;
+    int length;
+};
+typedef struct ListStruct List;
+List newList = {{0,NULL},0};
+
+
+
+void addToList(List* list, char string[])
+{
+    Node* current_node_ptr = &list->head_node;
 
     while (current_node_ptr->next != NULL)
     {
         current_node_ptr = current_node_ptr->next;
     }
 
-    Node* new_node_ptr = malloc(sizeof(Node));;
+    Node* new_node_ptr = malloc(sizeof(Node));
 
     new_node_ptr->value = allocate(string);
     new_node_ptr->next = NULL;
@@ -34,9 +42,9 @@ void addToList(char string[])
 
 
 
-void iterateList()
+void iterateList(List* list)
 {
-    Node* current_node_ptr = &head_node;
+    Node* current_node_ptr = &list->head_node;
 
     while (current_node_ptr->next != NULL)
     {
@@ -47,9 +55,9 @@ void iterateList()
 
 
 
-Node* getNodePtr(int index)
+Node* getNodePtr(List* list, int index)
 {
-    Node* current_node_ptr = &head_node;
+    Node* current_node_ptr = &list->head_node;
     
     for (int i=0; i<=index; i++)
     {
@@ -61,29 +69,29 @@ Node* getNodePtr(int index)
 
 
 
-char* getValue(int index)
+char* getValue(List* list, int index)
 {
-    return getNodePtr(index)->value;
+    return getNodePtr(list, index)->value;
 }
 
 
 
-void removeFromList(int index)
+void removeFromList(List* list, int index)
 {
     Node* this_node_ptr;
 
     if( index != 0 )
     {
-        Node* prev_node_ptr = getNodePtr(index-1);
+        Node* prev_node_ptr = getNodePtr(list, index-1);
         this_node_ptr = prev_node_ptr->next;
 
         prev_node_ptr->next = this_node_ptr->next;
     }
     else
     {
-        this_node_ptr = head_node.next;
+        this_node_ptr = list->head_node.next;
 
-        head_node.next = NULL;
+        list->head_node.next = NULL;
     }
 
     deallocate( this_node_ptr->value );
@@ -105,7 +113,7 @@ void recursiveDelete(Node* node)
     free(node);
 }
 
-void deleteList()
+void deleteList(List* list)
 {
-    recursiveDelete(head_node.next);
+    recursiveDelete(list->head_node.next);
 }

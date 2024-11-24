@@ -3,21 +3,36 @@
 
 int main()
 {
-    addToList("RION");
-    addToList("RION1");
-    addToList("RION1");
-    addToList("RION2");
+    List firstList = newList;
 
-    removeFromList(2);
+    addToList(&firstList, "RION");
+    addToList(&firstList, "RION1");
+    addToList(&firstList, "RION1");
+    addToList(&firstList, "RION2");
 
-    addToList("Pou");
+    removeFromList(&firstList, 2);
 
-    iterateList();
+    addToList(&firstList, "Pou");
 
-    deleteList();
+    iterateList(&firstList);
 
 
-    for( int i=0; i<25; i++)
+List firstList2 = newList;
+
+    addToList(&firstList2, "2RION");
+    addToList(&firstList2, "2RION1");
+    addToList(&firstList2, "2RION1");
+    addToList(&firstList2, "2RION2");
+
+    removeFromList(&firstList2, 2);
+
+    deleteList(&firstList);
+
+    addToList(&firstList2, "2Pou");
+
+    iterateList(&firstList2);
+
+    for( int i=0; i<50; i++)
     {
         printf("%c\n", heap[i]);
     }
