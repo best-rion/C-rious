@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1690743843 source:c:\users\hossainrion\desktop\multifile\add.c
+
+1690745253 source:c:\users\hossainrion\desktop\multifile\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1690745232 c:\users\hossainrion\desktop\multifile\header_files\header2.h
+
+1690745222 source:c:\users\hossainrion\desktop\multifile\funcs\adding.c
+
