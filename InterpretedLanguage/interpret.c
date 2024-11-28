@@ -2,10 +2,10 @@
 #include <string.h>
 #include <math.h>
 
-int main()
+int main(int argc, char* fileName[])
 {
     FILE *filePtr;
-    filePtr = fopen("file.rion", "r");
+    filePtr = fopen(fileName[1], "r");
     char content[100];
     fscanf(filePtr,"%99[^\n]", content);
 
